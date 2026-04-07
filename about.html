@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Farhan Rohman</title>
+<style>
+/* ========================= */
+/* GLOBAL STYLING */
+/* ========================= */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f7fa;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* ========================= */
+/* HERO / PROFILE */
+/* ========================= */
+.hero {
+    text-align: center;
+    background: #007BFF;
+    color: white;
+    padding: 25px;
+    border-radius: 12px 12px 0 0;
+}
+
+.hero img {
+    width: 150px;
+    border-radius: 50%;
+    border: 3px solid white;
+    margin-bottom: 15px;
+}
+
+.hero h2 {
+    margin: 10px 0 5px;
+    font-size: 24px;
+}
+
+.hero p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* ========================= */
+/* SINGLE CARD */
+/* ========================= */
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 3px 8px rgba(255, 255, 255, 0.08);
+}
+
+/* ========================= */
+/* SECTION / ATTRIBUTE */
+/* ========================= */
+.section {
+    margin-bottom: 20px;
+    padding-top: 15px;
+}
+
+.section h3 {
+    margin-top: 0;
+    color: #007BFF;
+    font-size: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.section p, .section ul {
+    margin: 10px 0 0 0;
+    color: #555;
+    line-height: 1.5;
+}
+
+.section ul {
+    padding-left: 20px;
+}
+
+.section ul li {
+    margin-bottom: 5px;
+}
+
+/* ========================= */
+/* CONTACT LINK STYLE */
+/* ========================= */
+.section ul li a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.section ul li a:hover {
+    text-decoration: underline;
+}
+
+/* ========================= */
+/* BORDER ANTAR SECTION */
+.section + .section {
+    border-top: 1px solid #eee;
+}
+
+/* ========================= */
+/* RESPONSIVE MOBILE (<768px) */
+/* ========================= */
+@media (max-width:768px){
+    .hero img { width: 120px; }
+    .hero h2 { font-size: 22px; }
+    .hero p { font-size: 14px; }
+    .section h3 { font-size: 18px; }
+    .section p, .section ul li { font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Hero / Profile -->
+    <div class="hero">
+        <img src="images/farhan1.jpeg" alt="Foto Farhan">
+        <h2>Farhan Rohman</h2>
+        <p>Mahasiswa Universitas Ma'soem | D3 Komputerisasi Akuntansi | Skill: Excel, Analisis Data | Hobi: Lari, Renang, Main Game</p>
+    </div>
+
+    <!-- CV Card -->
+    <div class="card">
+
+        <!-- Tentang Saya -->
+        <div class="section">
+            <h3>Tentang Saya</h3>
+            <p>Saya Farhan Rohman, Mahasiswa D3 Komputerisasi Akuntansi di Universitas Ma'soem. Memiliki ketertarikan dalam pengelolaan dan analisis data menggunakan Excel, serta pengalaman membuat laporan dan rekap data.</p>
+        </div>
+
+        <!-- Pendidikan -->
+        <div class="section">
+            <h3>Pendidikan</h3>
+            <ul>
+                <li>D3 Komputerisasi Akuntansi, Universitas Ma'soem (2023 - 2026)</li>            </ul>
+        </div>
+
+        <!-- Pengalaman Kerja -->
+        <div class="section">
+            <h3>Pengalaman Kerja</h3>
+            <ul>
+                <li>Asisten Administrasi | PT. Data Solusi (Magang) – Membuat rekap laporan keuangan dan laporan Excel.</li>
+            </ul>
+        </div>
+
+        <!-- Skill / Keahlian -->
+        <div class="section">
+            <h3>Skill / Keahlian</h3>
+            <ul>
+                <li>Rekap Data & Analisis di Excel</li>
+                <li>Pengelolaan Database Dasar</li>
+                <li>Analisis Data Sederhana</li>
+                <li>Pembuatan Laporan & Grafik di Excel</li>
+            </ul>
+        </div>
+
+        <!-- Kontak -->
+        <div class="section">
+            <h3>Kontak</h3>
+            <ul>
+                <li>Email: <a href="mailto:farhanrohman375@gmail.com">farhanrohman375@gmail.com</a></li>
+                <li>No HP: <a href="tel:089652128930">089652128930</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

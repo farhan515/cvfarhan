@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Online - SPA</title>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- CSS -->
+<style>
+body { font-family: Arial, sans-serif; margin:0; background:#f4f7fa; color:#333; }
+header { background:#007BFF; color:white; text-align:center; padding:20px 10px; }
+header h1 { margin:0; font-size:24px; }
+nav { background:#333; display:flex; justify-content:space-between; align-items:center; padding:10px 15px; flex-wrap:wrap; }
+.nav-links { display:flex; gap:10px; }
+.nav-links a { color:white; padding:12px 18px; text-decoration:none; font-weight:bold; border-radius:6px; transition:0.3s; position:relative; }
+.nav-links a:hover, .nav-links a.active { background:#575757; color:#00d4ff; }
+.nav-links a.active::after { content:""; position:absolute; bottom:-4px; left:10%; width:80%; height:3px; background:#00d4ff; border-radius:2px; }
+.menu-toggle { display:none; font-size:28px; color:white; cursor:pointer; padding:5px; }
+
+#content { padding:25px; margin:20px auto; border-radius:12px; background:#fff; box-shadow:0 4px 10px rgba(0,0,0,0.1); max-width:900px; }
+.hero { text-align:center; margin-bottom:25px; }
+.hero img { width:150px; border-radius:50%; border:3px solid #007BFF; margin-bottom:15px; }
+.hero h2 { margin:10px 0 5px; font-size:22px; }
+.hero p { color:#555; line-height:1.5; }
+
+.card { background:#f9f9f9; border-radius:12px; padding:20px; margin-bottom:25px; box-shadow:0 3px 8px rgba(0,0,0,0.08); }
+.card h3 { margin-top:0; color:#007BFF; font-size:20px; }
+.card p { color:#555; line-height:1.5; }
+.card ul { list-style:none; padding-left:0; }
+.card ul li { margin-bottom:5px; }
+.card ul li a { color:#007BFF; text-decoration:none; }
+.card ul li a:hover { text-decoration:underline; }
+
+.error { color:red; font-size:14px; display:none; margin-top:3px; }
+button { padding:12px 25px; background:#007BFF; color:white; border:none; border-radius:6px; font-size:16px; cursor:pointer; transition:0.3s; }
+button:hover { background:#0056b3; }
+
+h2 { text-align:center; margin-bottom:15px; }
+p { text-align:center; color:#555; }
+
+@media (max-width:768px){
+    nav { flex-direction:column; align-items:flex-start; }
+    .menu-toggle { display:block; margin-bottom:5px; }
+    .nav-links { flex-direction:column; width:100%; display:none; }
+    nav.active .nav-links { display:flex; }
+    .nav-links a { width:100%; text-align:left; border-top:1px solid #444; padding:12px 15px; }
+    #content { margin:10px; padding:20px; }
+    .hero img { width:120px; }
+    header h1 { font-size:20px; }
+    h2, .card h3 { font-size:18px; }
+    p, button { font-size:16px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>CV Online</h1>
+</header>
+
+<nav>
+    <div class="menu-toggle">☰ Menu</div>
+    <div class="nav-links">
+        <a href="#" class="home-btn active">Home</a>
+        <a href="#" data-page="about.html">About</a>
+        <a href="#" data-page="contact.html">Contact</a>
+        <a href="#" class="github-btn">GitHub Info</a>
+    </div>
+</nav>
+
+<div id="content">
+    <!-- Konten default Home -->
+    <div class="hero card">
+        <img src="images/farhan.jpeg" alt="Foto Farhan" class="profile">
+        <h2>Farhan</h2>
+        <p>Mahasiswa / Web Developer Pemula</p>
+    </div>
+
+    <h2>Selamat Datang</h2>
+    <p>Halo! Selamat datang di CV online saya.</p>
+    <p>Website ini dibuat menggunakan HTML, CSS, JavaScript, dan jQuery dengan konsep Single Page Application (SPA).</p>
+    <p>Silakan klik menu di atas untuk melihat informasi lebih lanjut tentang saya.</p>
+</div>
+
+<script>
+$(document).ready(function(){
+
+    function setActiveLink(el){
+        $(".nav-links a").removeClass("active");
+        $(el).addClass("active");
+    }
+
+    $(".nav-links a").click(function(e){
+        e.preventDefault();
+        setActiveLink(this);
+
+        if($(this).hasClass("home-btn")){
+            $("#content").fadeOut(200,function(){
+                $("#content").html(`
+                    <div class="hero card">
+                        <img src="farhan.jpeg" alt="Foto Farhan" class="profile">
+                        <h2>Farhan</h2>
+                        <p>Mahasiswa / Web Developer Pemula</p>
+                    </div>
+                    <h2>Selamat Datang</h2>
+                    <p>Halo! Selamat datang di CV online saya.</p>
+                    <p>Website ini dibuat menggunakan HTML, CSS, JavaScript, dan jQuery dengan konsep SPA.</p>
+                    <p>Silakan klik menu di atas untuk melihat informasi lebih lanjut tentang saya.</p>
+                `);
+                $("#content").fadeIn(200);
+            });
+        } else if($(this).hasClass("github-btn")){
+            $("#content").fadeOut(200,function(){
+                $("#content").html(`<div class="card"><p id="loading">Memuat data GitHub...</p></div>`).fadeIn(200);
+
+                const username = "farhanrohman375"; // Ganti dengan username GitHub kamu
+                $.ajax({
+                    url: `https://api.github.com/users/${username}`,
+                    method: "GET",
+                    dataType: "json",
+                    success: function(user){
+                        $.ajax({
+                            url: `https://api.github.com/users/${username}/repos`,
+                            method: "GET",
+                            dataType: "json",
+                            success: function(repos){
+                                let repoList = "";
+                                repos.forEach(r=>{
+                                    repoList += `<li><a href="${r.html_url}" target="_blank">${r.name}</a></li>`;
+                                });
+                                $("#content").html(`
+                                    <div class="card">
+                                        <img src="${user.avatar_url}" alt="${user.login}" style="width:120px;border-radius:50%;display:block;margin:0 auto 15px;">
+                                        <h2>${user.login}</h2>
+                                        <p>Followers: ${user.followers} | Following: ${user.following} | Repos: ${user.public_repos}</p>
+                                        <h3>Repositori Publik:</h3>
+                                        <ul>${repoList}</ul>
+                                    </div>
+                                `);
+                            },
+                            error: function(){
+                                $("#content").html(`<div class="card"><p>Gagal mengambil repositori GitHub.</p></div>`);
+                            }
+                        });
+                    },
+                    error: function(){
+                        $("#content").html(`<div class="card"><p>Gagal mengambil data GitHub. Periksa koneksi atau username.</p></div>`);
+                    }
+                });
+            });
+        } else {
+            let page = $(this).data("page");
+            $("#content").fadeOut(200,function(){
+                $("#content").load(page,function(){
+                    $("#content").fadeIn(200);
+                });
+            });
+        }
+
+        $("nav").removeClass("active");
+    });
+
+    $(".menu-toggle").click(function(){
+        $("nav").toggleClass("active");
+    });
+
+});
+</script>
+
+</body>
+</html>
